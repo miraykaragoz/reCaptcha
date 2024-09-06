@@ -1,0 +1,42 @@
+﻿@model FormModel
+
+@{
+    ViewData["Title"] = "Anasayfa";
+}
+
+@if (ViewBag.CaptchaError != null)
+{
+    <div class="alert alert-danger" role="alert">
+        reCaptcha doğrulanamadı!
+    </div>
+}
+
+<form method="post" id="kayitFormu">
+    <p>
+        <label asp-for="Name"></label>
+        <input required asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </p>
+    <p>
+        <label asp-for="Email"></label>
+        <input required asp-for="Email" />
+        <span asp-validation-for="Email"></span>
+    </p>
+    <p>
+        <button class="g-recaptcha"
+                data-sitekey=""
+                data-callback='onSubmit'
+                data-action='submit'>
+            Kaydet
+        </button>
+    </p>
+</form>
+
+@section Scripts {
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script>
+        function onSubmit(token) {
+            kayitFormu.submit();
+        }
+    </script>
+}
