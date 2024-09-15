@@ -14,17 +14,17 @@
 <form method="post" id="kayitFormu">
     <p>
         <label asp-for="Name"></label>
-        <input required asp-for="Name" />
+        <input required asp-for="Name"/>
         <span asp-validation-for="Name"></span>
     </p>
     <p>
         <label asp-for="Email"></label>
-        <input required asp-for="Email" />
+        <input required asp-for="Email"/>
         <span asp-validation-for="Email"></span>
     </p>
     <p>
         <button class="g-recaptcha"
-                data-sitekey=""
+                data-sitekey="6LfKHjQqAAAAAJ3YOQ6qV6vKbB30V3Rkn31tAYUi"
                 data-callback='onSubmit'
                 data-action='submit'>
             Kaydet
@@ -36,7 +36,9 @@
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <script>
         function onSubmit(token) {
+        if (kayitFormu.reportValidity()){
             kayitFormu.submit();
+        }
         }
     </script>
 }
